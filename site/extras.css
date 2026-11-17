@@ -1,0 +1,41 @@
+/* ---- spinning photo ring ---- */
+.spin{padding:72px 0 56px;overflow:hidden}.spin .head{display:block;text-align:center;margin-bottom:6px}.spin .head p{margin:10px 0 0;color:var(--muted)}
+.ring-stage{position:relative;height:clamp(250px,42vw,380px);perspective:1100px;touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none;margin-top:14px}.ring-stage:active{cursor:grabbing}
+.ring{position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d;will-change:transform}
+.ring-item{position:absolute;padding:0;border:0;background:var(--surface);border-radius:12px;overflow:hidden;box-shadow:0 14px 34px rgba(0,0,0,.28);backface-visibility:hidden;-webkit-backface-visibility:hidden;cursor:pointer}
+.ring-item img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+/* ---- learn + testimonials ---- */
+.eyebrow{display:inline-block;color:var(--gold);font-weight:600;font-size:.9rem;margin-bottom:12px}
+.center{text-align:center}.center .head{display:block;margin-bottom:8px}.sub{max-width:60ch;margin:12px auto 34px;color:var(--muted)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px;text-align:left}
+.step b{display:block;font:800 1.9rem 'Bricolage Grotesque',sans-serif;color:var(--gold);margin-bottom:10px}.step h3{font-size:1.2rem;margin-bottom:8px}.step p{margin:0;color:var(--muted);font-size:.95rem}
+.learn .btn{margin-top:30px;border:0;cursor:pointer}
+.quotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:16px;text-align:left}
+.quote{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:14px}.quote p{margin:0;font-style:italic}.quote small{display:block;color:var(--gold);font-weight:600}.quote strong{display:block}
+/* learn dialog */
+dialog.lrn{background:transparent;border:0;padding:0;max-width:min(94vw,600px);width:100%;max-height:94vh;overflow:visible}dialog.lrn::backdrop{background:rgba(0,0,0,.7)}
+.lrn form{background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:14px;padding:24px;max-height:90vh;overflow:auto;display:grid;gap:12px;position:relative}
+.lrn h3{font-size:1.5rem;padding-right:44px}.lrn fieldset{border:0;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:6px 14px}.lrn legend{font-weight:500;margin-bottom:4px;padding:0}.lrn fieldset label{display:flex;align-items:center;gap:6px;font-weight:400}
+.lrn input[type=radio],.lrn input[type=checkbox]{width:auto;margin:0}
+.lrn input:not([type=radio]):not([type=checkbox]),.lrn select,.lrn textarea{background:var(--bg);color:var(--ink);border:1.5px solid var(--line)}
+.lrn .xb{position:absolute;top:12px;right:12px;width:40px;height:40px;border-radius:50%;border:1.5px solid var(--line);background:transparent;color:var(--ink);font-size:1.3rem;cursor:pointer}
+.lrn .note{margin:0;color:var(--muted);font-size:.9rem}.lrn .err{margin:0;color:#b3261e;font-size:.92rem}.lrn .btn{border:0;cursor:pointer;justify-self:start;background:var(--gold);color:#12261f}
+/* promo pill */
+.promo{position:fixed;left:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:39;display:flex;align-items:center;gap:6px}
+.promo-a{position:relative;display:block;border-radius:999px;padding:2px;overflow:hidden;text-decoration:none;background:#0a0a0b}
+.promo-a::before{content:"";position:absolute;left:50%;top:50%;width:300%;aspect-ratio:1;margin:-150% 0 0 -150%;background:conic-gradient(from 0deg,transparent 0 55%,#e0b04a 78%,#fff2c4 88%,transparent);animation:pspin 2.6s linear infinite}
+.promo-a span{position:relative;display:block;background:#12261f;color:#fff;border-radius:999px;padding:9px 16px;font:600 .88rem/1.25 Figtree,system-ui,sans-serif}.promo-a small{display:block;font-weight:400;opacity:.85;font-size:.76rem}
+.promo-x{width:26px;height:26px;border-radius:50%;border:0;background:rgba(0,0,0,.55);color:#fff;cursor:pointer;font-size:1rem;line-height:1}
+@keyframes pspin{to{transform:rotate(360deg)}}
+@media (max-width:1040px){.steps{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.steps{grid-template-columns:1fr}.promo-a span{padding:8px 12px;font-size:.82rem}.spin{padding:56px 0 40px}}
+@media (prefers-reduced-motion:reduce){.promo-a::before{animation:none}}
+.kc-link{display:inline-block;margin-left:18px;color:#d8b45a;font-weight:600;text-decoration:none;border-bottom:1px solid rgba(216,180,90,.5)}.kc-link:hover{color:#fff}
+
+/* testimonial cards with client photos */
+.quotes{grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr))}
+.quote.has-photo{display:grid;grid-template-columns:104px 1fr;grid-template-areas:"photo id" "photo text";column-gap:18px;row-gap:10px;align-items:start}
+.q-photo{grid-area:photo;width:104px;height:140px;object-fit:cover;border-radius:12px;display:block;background:var(--surface)}
+.q-id{grid-area:id}.q-text{grid-area:text}.q-role{display:block;color:var(--muted);font-size:.9rem}
+@media (max-width:560px){.quote.has-photo{grid-template-columns:72px 1fr;grid-template-areas:"photo id" "text text"}.q-photo{width:72px;height:96px}}
